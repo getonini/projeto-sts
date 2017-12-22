@@ -54,12 +54,12 @@ public class CadastroPJController {
 
 		if (result.hasErrors()) {
 			log.error("Erro validando dados de cadastro PJ: {}", result.getAllErrors());
-			result.getAllErrors().forEach(error -> response.getErros().add(error.getDefaultMessage()));
+			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
 
 		this.empresaService.persistir(empresa);
-		result.getAllErrors().forEach(error -> response.getErros().add(error.getDefaultMessage()));
+		result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 		this.funcionarioService.persistir(funcionario);
 
 		response.setData(this.converterCadastroPJDto(funcionario));
